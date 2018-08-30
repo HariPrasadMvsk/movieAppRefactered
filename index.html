@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ES6 and React Movie app : Code refactor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="./assets/css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<p>No results found or Something went wrong...!!! Please try again.....!!!!!</p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="header">
+				<h1>Movie App : Code refactor</h1>
+			</div>
+			
+			<div class="form-wrapper">
+				<form class="form-inline" id="movieSearch">
+					<fieldset>
+						<legend>Movie List Search</legend>
+						<div class="form-group">
+							<label for="search">Search by movie name:</label>
+							<input type="text" class="form-control search-box" id="search" placeholder="Search by movie name" name="search" required>
+						</div>
+						<button type="submit" class="btn btn-search">Search</button>
+						<div class="form-group clearfix">
+							<label for="filter_movie">Filter by movie name:</label>
+							<input type="text" class="form-control filter-box" id="filter_movie" placeholder="Filter by movie name" name="filter">
+						</div>
+					</fieldset>
+				</form>
+				<div class="view-fav"><a class="btn-link favMovies" href="javascript:void(0);">View Favorite List</a></div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="result-wrapper" id="result-wrapper">
+				<div class="title">
+					<span id="search-label"></span>
+				</div>
+				<div class="result-list">
+					<ul class="lists" id="lists"></ul>
+				</div>
+			</div>
+
+			<div class="fav-wrapper">
+				<div class="fav-list" id="favLists"></div>
+			</div>
+
+		</div>
+		<div class="footer">
+				Movie App 2018 &copy; rights reserved
+			</div>
+		<script type="text/javascript">
+			function loadScript(src) {
+				return new Promise((resolve, reject) => {
+					let script = document.createElement('script');
+					script.src = src;
+					script.onload = () => resolve(script);
+					script.onerror = () => reject(new Error('Script load error for ${src}'));
+					document.head.append(script);
+				})
+			}
+			async function callLoadScript() {
+				try{
+					await loadScript('./assets/js/myScript.js');
+				} catch(error){
+					handleError(error);
+				}
+			}
+			callLoadScript();
+			function handleError(error) {
+				console.log('Some thing went wrong ${error}');
+			}
+		</script>
+	</body>
+</html>
